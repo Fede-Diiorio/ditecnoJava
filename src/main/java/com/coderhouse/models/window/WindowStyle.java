@@ -9,39 +9,46 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "windows_openness")
-public class Openness {
+@Table(name = "windows_styles")
+public class WindowStyle {
 
-	// Attributes
+	//Attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+	
 	@Column(length = 30, nullable = false)
 	private String name;
-
-	@Column(length = 20, nullable = false)
+	
+	@Column(length = 20, nullable = false, unique = true)
 	private String slug;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "windows_details", joinColumns = @JoinColumn(name = "openness_id"), inverseJoinColumns = @JoinColumn(name = "style_id"))
-	private List<Style> styles = new ArrayList<>();
+	@Column(length = 200)
+	private String image;
+	
+	@OneToMany(mappedBy = "style", fetch = FetchType.EAGER)
+	List<Window> windows = new ArrayList<Window>();
 
 	//Constructors
-	public Openness() {
+	public WindowStyle() {
 		super();
 	}
 
-	public Openness(String name, String slug) {
+	public WindowStyle(String name, String slug) {
 		super();
 		this.name = name;
 		this.slug = slug;
+	}
+
+	public WindowStyle(String name, String slug, String image) {
+		super();
+		this.name = name;
+		this.slug = slug;
+		this.image = image;
 	}
 
 	//GET y SET
@@ -61,14 +68,22 @@ public class Openness {
 		this.slug = slug;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public long getId() {
 		return id;
 	}
 
 	@Override
 	public String toString() {
-		return "Openness [id=" + id + ", name=" + name + ", slug=" + slug + "]";
+		return "Style [id=" + id + ", name=" + name + ", slug=" + slug + ", image=" + image + "]";
 	}
-
+	
 	
 }
