@@ -1,4 +1,4 @@
-package com.coderhouse.models.window;
+package com.coderhouse.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ public class Window {
 
 	@ManyToOne
 	@JoinColumn(name = "openness_id", nullable = false)
-	private WindowOpenness openness;
+	private Openness openness;
 
 	@ManyToOne
 	@JoinColumn(name = "style_id", nullable = false)
@@ -43,7 +43,7 @@ public class Window {
 		super();
 	}
 
-	public Window(String name, String slug, String image, byte casementQuantity, WindowOpenness openness,
+	public Window(String name, String slug, String image, byte casementQuantity, Openness openness,
 			WindowStyle style) {
 		super();
 		validateCasement(casementQuantity);

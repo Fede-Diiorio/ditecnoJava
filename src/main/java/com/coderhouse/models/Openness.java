@@ -1,4 +1,4 @@
-package com.coderhouse.models.window;
+package com.coderhouse.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "windows_openness")
-public class WindowOpenness {
+@Table(name = "openness")
+public class Openness {
 
 	// Attributes
 	@Id
@@ -31,11 +31,11 @@ public class WindowOpenness {
 	List<Window> windows = new ArrayList<Window>();
 
 	//Constructors
-	public WindowOpenness() {
+	public Openness() {
 		super();
 	}
 
-	public WindowOpenness(String name, String slug) {
+	public Openness(String name, String slug) {
 		super();
 		this.name = name;
 		this.slug = slug;

@@ -1,4 +1,4 @@
-package com.coderhouse.models.window;
+package com.coderhouse.models;
 
 import java.util.ArrayList;
 import java.util.List;
