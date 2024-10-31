@@ -30,7 +30,7 @@ public class WindowStyle {
 	@Column(length = 200)
 	private String image;
 	
-	@OneToMany(mappedBy = "style", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "style", fetch = FetchType.LAZY)
 	List<Window> windows = new ArrayList<Window>();
 
 	//Constructors
