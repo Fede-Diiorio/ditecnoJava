@@ -11,9 +11,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "windows_types")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class WindowType {
 
 	// Attributes
@@ -36,11 +46,6 @@ public class WindowType {
 	@OneToMany(mappedBy = "type", fetch = FetchType.EAGER)
 	List<Window> windows = new ArrayList<Window>();
 
-	// Constructors
-	public WindowType() {
-		super();
-	}
-
 	public WindowType(String name, String slug, String image, byte casementQuantity) {
 		super();
 		validateCasement(casementQuantity);
@@ -50,42 +55,9 @@ public class WindowType {
 		this.casementQuantity = casementQuantity;
 	}
 
-	// GET y SET
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public byte getCasementQuantity() {
-		return casementQuantity;
-	}
-
 	public void setCasementQuantity(byte casementQuantity) {
 		validateCasement(casementQuantity);
 		this.casementQuantity = casementQuantity;
-	}
-
-	public long getId() {
-		return id;
 	}
 
 	// Methods
@@ -95,11 +67,4 @@ public class WindowType {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return "WindowType [id=" + id + ", name=" + name + ", slug=" + slug + ", image=" + image + ", casementQuantity="
-				+ casementQuantity + "]";
-	}
-
-	
 }

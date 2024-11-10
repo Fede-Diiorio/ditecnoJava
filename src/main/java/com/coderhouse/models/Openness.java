@@ -11,9 +11,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "openness")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Openness {
 
 	// Attributes
@@ -26,47 +36,8 @@ public class Openness {
 
 	@Column(length = 20, nullable = false, unique = true)
 	private String slug;
-	
+
 	@OneToMany(mappedBy = "openness", fetch = FetchType.LAZY)
 	private List<Window> windows = new ArrayList<>();
 
-
-	//Constructors
-	public Openness() {
-		super();
-	}
-
-	public Openness(String name, String slug) {
-		super();
-		this.name = name;
-		this.slug = slug;
-	}
-
-	//GET y SET
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	@Override
-	public String toString() {
-		return "Openness [id=" + id + ", name=" + name + ", slug=" + slug + "]";
-	}
-
-	
 }
