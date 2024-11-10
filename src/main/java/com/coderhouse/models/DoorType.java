@@ -18,13 +18,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "doors_designs")
+@Table(name = "doors_types")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
-public class DoorDesign {
+public class DoorType {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,22 +33,26 @@ public class DoorDesign {
 	@Column(length = 70, nullable = false)
 	private String name;
 
-	@Column(length = 70, nullable = false, unique = true)
+	@Column(length = 40, nullable = false, unique = true)
 	private String slug;
-	
-	@OneToMany(mappedBy = "design", fetch = FetchType.EAGER)
-	private List<Door> doors = new ArrayList<Door>();
 
-	public void setSlug(String slug) {
-		validateSlug(slug);
-		this.slug = slug;
+	@Column(length = 200)
+	private String image = "Sin Imagen";
+
+	@Column(nullable = false)
+	private byte casementQuantity;
+
+	@Column(nullable = false, length = 100)
+	private String casementName = "Medida de hoja [metros]";
+
+	@OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
+	private List<Door> doors = new ArrayList<>();
+
+	public void setImage(String image) {
+		this.image = (image != null) ? image : "Sin Imagen";
 	}
 
-	// Methods
-	private String validateSlug(String slug) {
-		if (slug == null) {
-			return "sin-diseño";
-		}
-		return slug.toLowerCase().replace(" ", "-");
+	public void setCasementName(String casementName) {
+		this.casementName = (casementName != null) ? casementName : "Medida de hoja [metros]";
 	}
 }
