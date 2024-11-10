@@ -39,5 +39,8 @@ public class Openness {
 
 	@OneToMany(mappedBy = "openness", fetch = FetchType.LAZY)
 	private List<Window> windows = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "openness", fetch = FetchType.LAZY)
+	private List<Door> doors = new ArrayList<>();
 
 }

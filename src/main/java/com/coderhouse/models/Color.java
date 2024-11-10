@@ -42,5 +42,8 @@ public class Color {
 
 	@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
 	List<Window> windows = new ArrayList<Window>();
+	
+	@OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
+	List<Door> doors = new ArrayList<Door>();
 
 }

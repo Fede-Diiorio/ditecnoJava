@@ -43,6 +43,6 @@ public class Door {
 	private DoorStyle style;
 
 	@ManyToOne
-	@JoinColumn(name = "openess_id", nullable = false)
+	@JoinColumn(name = "openness_id", nullable = false)
 	private Openness openness;
 }
